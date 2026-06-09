@@ -93,7 +93,7 @@ class Status(models.Model):
 
 class Animal(models.Model):
     nome = models.CharField(max_length=50, verbose_name="Nome do animal")
-    tamanho = models.CharField(max_length=4, verbose_name="Tamanho(cm) do animal")
+    tamanho = models.CharField(max_length=4, verbose_name="Altura(cm) do animal")
     idade = models.IntegerField( verbose_name="Idade do animal")
     tipo = models.ForeignKey(Tipo, on_delete=models.CASCADE, verbose_name="Tipo do animal")
     status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name="Status do animal")
@@ -109,7 +109,6 @@ class Animal(models.Model):
 
 class Vacina(models.Model):
     nome = models.CharField(max_length=50, verbose_name="Nome da vacina")
-    animal = models.ForeignKey(Animal, on_delete=models.CASCADE, verbose_name="Animal vacinado")
 
 
     def __str__(self):

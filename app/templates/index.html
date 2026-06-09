@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetnaEstrada</title>
+    <link rel="icon" href="../../static/img/pata.png">
+    <link rel="stylesheet" href="../../static/CSS/estilo.css">
+</head>
+<body>
+
+    <header>
+        <h1>🐾 PetnaEstrada!</h1>
+        <p>Registro e monitoramento de animais de rua</p>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/admin/">Administração</a>
+        </li>
+    </header>
+
+    <main>
+        <section class="cadastro-animal">
+            <h2>Cadastrar Animal</h2>
+        
+            <form method="POST">
+                {% csrf_token %}
+        
+                <div class="campo">
+                    <label>Nome</label>
+                    <input type="text" name="nome">
+                </div>
+        
+                <div class="campo">
+                    <label>Tamanho (cm)</label>
+                    <input type="number" name="tamanho">
+                </div>
+        
+                <div class="campo">
+                    <label>Idade</label>
+                    <input type="number" name="idade">
+                </div>
+        
+                <div class="campo">
+                    <label>Tipo</label>
+                    <select name="tipo">
+                        {% for tipo in tipos %}
+                            <option value="{{ tipo.id }}">
+                                {{ tipo.especie }} - {{ tipo.raca }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+        
+                <div class="campo">
+                    <label>Status</label>
+                    <select name="status">
+                        {% for status in status %}
+                            <option value="{{ status.id }}">
+                                {{ status.nome }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+        
+                <div class="campo">
+                    <label>Bairro</label>
+                    <select name="bairro">
+                        {% for bairro in bairros %}
+                            <option value="{{ bairro.id }}">
+                                {{ bairro.nome }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+        
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+
+        <section class="animais">
+            <h2>Animais Registrados</h2>
+
+            <div class="animal-card">
+            
+                {% for animais in animais %}
+                <div class="animal-info">
+                    <h3>{{ animais.nome }}</h3>
+            
+                    <p>
+                        <strong>Espécie:</strong>
+                        {{ animais.tipo.especie }}
+                    </p>
+            
+                    <p>
+                        <strong>Raça:</strong>
+                        {{ animais.tipo.raca }}
+                    </p>
+            
+                    <p>
+                        <strong>Idade:</strong>
+                        {{ animais.idade }} anos
+                    </p>
+            
+                    <p>
+                        <strong>Status:</strong>
+                        {{ animais.status.nome }}
+                    </p>
+            
+                    <p>
+                        <strong>Localização:</strong>
+                        {{ animais.bairro.nome }},
+                        {{ animais.bairro.cidade.nome }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+        </section>
+    </main>
+    <footer>
+        <small>Copyright &copy; IFSULDEMINAS</small>
+    </footer>
+</body>
+</html>
