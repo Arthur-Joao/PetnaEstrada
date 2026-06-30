@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetnaEstrada</title>
+    <link rel="icon" href="../../static/img/pata.png">
+    <link rel="stylesheet" href="../../static/CSS/estilo.css">
+</head>
+
+<body>
+<section class="login">
+    <h2>Login</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color:red">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>Email</label>
+        <input type="email" name="email">
+
+        <br><br>
+
+        <label>Senha</label>
+        <input type="password" name="senha">
+
+        <br><br>
+
+        <button type="submit">
+            Entrar
+        </button>
+</section>
+</form>
+
+</body>
+</html>
