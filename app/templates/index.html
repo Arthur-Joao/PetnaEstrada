@@ -21,9 +21,12 @@
         <section class="cadastro-animal">
             <h2>Cadastrar Animal</h2>
         
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-        
+                <div class="campo">
+                    <label>Foto</label>
+                    <input type="file" name="foto">
+                </div>
                 <div class="campo">
                     <label>Nome</label>
                     <input type="text" name="nome">
